@@ -1,5 +1,6 @@
 package com.example.PAC_04;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +33,6 @@ public class LibraryRestController {
 	@PostMapping(path = "/addAuthor", consumes = "application/json" )
 	public ResponseEntity<Author> createBook(@Validated @RequestBody Author author) {
 		
-		//System.out.println("This is the object that gets from client/postman in java class book: " +  book);
-		
 		Author authorSaved = authorservice.addAuthorToArray(author);
 		
 		var headers = new HttpHeaders();
@@ -53,10 +52,8 @@ public class LibraryRestController {
 		
 		if ( idAuthor != -1 ) 
 			{
-			//bookservice.deleteBookFromArray(title);
 			authortodelete = authorservice.getAuthorById(idAuthor);
 			authorservice.deleteAuthorFromArray(idAuthor);
-			//System.out.println("Book found in " + indexBook + " and deleted");
 			responsedelete = responsedelete + "author: " + name  + " - deleted #succes";
 		}else {
 			System.out.println("Author not found, not deleted");
